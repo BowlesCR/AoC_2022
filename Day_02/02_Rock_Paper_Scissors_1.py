@@ -7,18 +7,12 @@ def score(opp, me) -> int:
     if opp == me:  # Draw
         return s + 3
 
-    if opp == "A" and me == "C":  # Rock, Scissors -- Lose
-        return s
-    elif opp == "B" and me == "A":  # Paper, Rock -- Lose
-        return s
-    elif opp == "C" and me == "B":  # Scissors, Paper -- Lose
+    # Lose conditions
+    if (opp == "A" and me == "C") or (opp == "B" and me == "A") or (opp == "C" and me == "B"):
         return s
 
-    if opp == "C" and me == "A":  # Scissors, Rock -- Win
-        return s + 6
-    elif opp == "A" and me == "B":  # Rock, Paper -- Win
-        return s + 6
-    elif opp == "B" and me == "C":  # Paper, Scissors -- Win
+    # Win conditions
+    if (opp == "C" and me == "A") or (opp == "A" and me == "B") or (opp == "B" and me == "C"):
         return s + 6
 
     return 0
@@ -45,9 +39,14 @@ def shape(opp, res):
             return "A"
 
 
-total = 0
-for line in fileinput.input():
-    (opp, res) = line.strip().split()
-    me = shape(opp, res)
-    total += score(opp, me)
-print(total)
+def main():
+    total = 0
+    for line in fileinput.input():
+        (opp, res) = line.strip().split()
+        me = shape(opp, res)
+        total += score(opp, me)
+    print(total)
+
+
+if __name__ == "__main__":
+    main()

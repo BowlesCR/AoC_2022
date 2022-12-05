@@ -5,7 +5,7 @@ r_crates = re.compile(r"(\[[A-Z] ?]| {3,4})")
 r_numbers = re.compile(r"^(?: \d {0,2}){1,9}\n$")
 r_instruction = re.compile(r"^move (\d+) from (\d) to (\d)\n?$")
 
-stacks: list[list[str]] = [[] for i in range(9)]
+stacks: list[list[str]] = [[] for _ in range(9)]
 
 state = "crates"
 for line in fileinput.input():
