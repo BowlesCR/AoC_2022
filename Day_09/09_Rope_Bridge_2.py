@@ -48,7 +48,10 @@ def main():
                     if dc != 0:
                         knots[i] = knots[i]._replace(c=knots[i].c + dc // abs(dc))  # clamp to 1 unit
 
-            tail_positions.add(knots[-1])
+                    if i + 1 == len(knots):  # did we just move the tail?
+                        tail_positions.add(knots[-1])
+                else:
+                    break  # if this knot didn't need to move, then the ones behind it don't either.
 
     print(len(tail_positions))
 
